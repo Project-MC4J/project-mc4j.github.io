@@ -47,10 +47,17 @@
             color: #55aaff;
         }
 
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
         nav a {
             color: #ccc;
             text-decoration: none;
-            margin-left: 20px;
+            transition: color 0.2s;
         }
 
         nav a:hover {
@@ -98,6 +105,7 @@
             font-weight: bold;
             background: #2585df;
             color: white;
+            transition: opacity 0.2s, transform 0.2s;
         }
 
         .button.secondary {
@@ -106,64 +114,45 @@
 
         .button:hover {
             opacity: 0.8;
+            transform: translateY(-2px);
         }
 
-        .projects {
+        .about {
             padding: 60px 10%;
             background: #151a23;
             text-align: center;
         }
 
-        .projects h2 {
+        .about h2 {
             font-size: 32px;
-            margin-bottom: 35px;
+            margin-bottom: 20px;
         }
 
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
-            gap: 20px;
-        }
-
-        .card {
-            background: #202735;
-            padding: 30px;
-            border-radius: 12px;
-            text-align: left;
-        }
-
-        .card h3 {
-            color: #55aaff;
-            margin-bottom: 12px;
-        }
-
-        .card p {
+        .about p {
             color: #aaa;
-            line-height: 1.6;
-        }
-
-        .card a {
-            display: inline-block;
-            margin-top: 20px;
-            color: #55aaff;
-            text-decoration: none;
+            max-width: 750px;
+            margin: auto;
+            line-height: 1.8;
+            font-size: 16px;
         }
 
         footer {
             padding: 30px;
             text-align: center;
             color: #777;
+            line-height: 1.8;
         }
 
-        @media (max-width: 600px) {
+        @media (max-width: 700px) {
             header {
                 padding: 15px 5%;
-                flex-wrap: wrap;
+                flex-direction: column;
                 gap: 15px;
             }
 
-            nav a {
-                margin-left: 10px;
+            nav {
+                justify-content: center;
+                gap: 15px;
             }
         }
     </style>
@@ -178,8 +167,10 @@
         </div>
 
         <nav>
-            <a href="#projects">Projects</a>
-            <a href="https://github.com/Project-MC4J">GitHub</a>
+            <a href="./">Home</a>
+            <a href="mc4jlauncher/">MC4JLauncher</a>
+            <a href="mc4jeditor/">MC4JEditor</a>
+            <a href="https://github.com/Project-MC4J" target="_blank" rel="noopener noreferrer">GitHub</a>
         </nav>
     </header>
 
@@ -194,49 +185,31 @@
 
         <div class="buttons">
             <a class="button"
-               href="https://github.com/Project-MC4J">
+               href="https://github.com/Project-MC4J"
+               target="_blank"
+               rel="noopener noreferrer">
                 Explore GitHub
             </a>
 
             <a class="button secondary"
-               href="#projects">
-                Our Projects
+               href="mc4jlauncher/">
+                Explore Our Projects
             </a>
         </div>
     </section>
 
-    <section class="projects" id="projects">
-        <h2>Our Projects</h2>
+    <section class="about">
+        <h2>About Project MC4J</h2>
 
-        <div class="cards">
+        <p>
+            Project MC4J is an independent open-source ecosystem
+            focused on tools and utilities for Minecraft Legacy
+            Console Edition.
 
-            <div class="card">
-                <h3>MC4JLauncher</h3>
-
-                <p>
-                    A launcher designed to manage and run
-                    Minecraft Legacy Console installations.
-                </p>
-
-                <a href="https://github.com/Project-MC4J/MC4JLauncher">
-                    View repository →
-                </a>
-            </div>
-
-            <div class="card">
-                <h3>MC4JEditor</h3>
-
-                <p>
-                    A packaging tool for Minecraft Legacy
-                    projects within the MC4J ecosystem.
-                </p>
-
-                <a href="https://github.com/Project-MC4J/MC4JEditor">
-                    View repository →
-                </a>
-            </div>
-
-        </div>
+            Our goal is to provide a flexible environment for
+            managing installations, creating projects and
+            extending the Minecraft Legacy experience.
+        </p>
     </section>
 
     <footer>
