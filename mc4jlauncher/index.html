@@ -1,1 +1,493 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="MC4JLauncher - A dedicated launcher for Minecraft Legacy Console Edition. Your Legacy. Your Way.">
+
+    <title>MC4JLauncher | Project MC4J</title>
+
+    <link rel="icon" type="image/png" href="../logo.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #10131a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 18px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #252b38;
+            background: #10131a;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .brand h2 {
+            color: #55aaff;
+            font-size: 21px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #55aaff;
+        }
+
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(37, 133, 223, 0.15),
+                    transparent 65%
+                );
+        }
+
+        .tag {
+            color: #55aaff;
+            border: 1px solid #2585df;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 82px);
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #55aaff;
+        }
+
+        .slogan {
+            font-size: clamp(20px, 4vw, 27px);
+            color: #d0d0d0;
+            margin-bottom: 22px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            color: #aaa;
+            font-size: 17px;
+            max-width: 680px;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 15px 26px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            background: #2585df;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .button.secondary {
+            background: #252b38;
+        }
+
+        .button:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 75px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #aaa;
+            max-width: 750px;
+            margin: 0 auto 45px;
+            line-height: 1.8;
+        }
+
+        .about {
+            background: #151a23;
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            color: #aaa;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        .features {
+            background: #10131a;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: #202735;
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid #2b3547;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: #2585df;
+        }
+
+        .feature h3 {
+            color: #55aaff;
+            margin-bottom: 14px;
+            font-size: 19px;
+        }
+
+        .feature p {
+            color: #aaa;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .ecosystem {
+            background: #151a23;
+            text-align: center;
+        }
+
+        .ecosystem p {
+            color: #aaa;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .ecosystem a {
+            color: #55aaff;
+            text-decoration: none;
+        }
+
+        .github {
+            text-align: center;
+            background: #10131a;
+        }
+
+        .github p {
+            color: #aaa;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            color: #777;
+            line-height: 1.8;
+            border-top: 1px solid #252b38;
+        }
+
+        footer a {
+            color: #55aaff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 14px;
+            }
+
+            section {
+                padding: 55px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="brand">
+            <img src="../logo.png" alt="Project MC4J Logo">
+            <h2>MC4JLauncher</h2>
+        </div>
+
+        <nav>
+            <a href="../">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#github">GitHub</a>
+        </nav>
+    </header>
+
+
+    <section class="hero">
+
+        <div class="tag">PROJECT MC4J</div>
+
+        <h1>MC4J<span>Launcher</span></h1>
+
+        <div class="slogan">
+            Your Legacy. Your Way.
+        </div>
+
+        <p>
+            A dedicated launcher designed to manage, organize
+            and run Minecraft Legacy Console Edition installations.
+
+            Built to provide a more flexible and convenient
+            experience for the Minecraft Legacy community.
+        </p>
+
+        <div class="buttons">
+
+            <a class="button"
+               href="https://github.com/Project-MC4J/MC4JLauncher"
+               target="_blank"
+               rel="noopener noreferrer">
+                View on GitHub
+            </a>
+
+            <a class="button secondary" href="#features">
+                Explore Features
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="about" id="about">
+
+        <h2 class="section-title">What is MC4JLauncher?</h2>
+
+        <p class="section-description">
+            More than a launcher. A management environment
+            for Minecraft Legacy Console Edition.
+        </p>
+
+        <div class="about-content">
+
+            <p>
+                MC4JLauncher is an independent software project
+                developed as part of the Project MC4J ecosystem.
+
+                Its purpose is to simplify the management and
+                execution of Minecraft Legacy Console Edition
+                installations through a centralized interface.
+            </p>
+
+            <br>
+
+            <p>
+                Instead of manually managing different installations
+                and related files, users can use MC4JLauncher
+                to organize their game environments and access
+                additional management tools.
+            </p>
+
+            <br>
+
+            <p>
+                The launcher is designed with extensibility in mind,
+                allowing additional functionality through its
+                extension system.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="features" id="features">
+
+        <h2 class="section-title">Features</h2>
+
+        <p class="section-description">
+            Tools designed to make managing Minecraft Legacy
+            installations more convenient.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature">
+                <h3>Installation Management</h3>
+
+                <p>
+                    Organize and manage multiple Minecraft Legacy
+                    installations from a centralized interface.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>GameHDD Support</h3>
+
+                <p>
+                    Manage the game's storage environment and
+                    associated installation files.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Extension System</h3>
+
+                <p>
+                    Extend launcher functionality through
+                    additional Python-based extensions.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Runtime Management</h3>
+
+                <p>
+                    Handle the runtime environment used to
+                    launch Minecraft Legacy installations.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Process Monitoring</h3>
+
+                <p>
+                    Monitor game processes and detect
+                    important game session events.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Cleanup Tools</h3>
+
+                <p>
+                    Access utilities designed to help manage
+                    temporary and unnecessary launcher files.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="ecosystem">
+
+        <h2 class="section-title">Part of Something Bigger</h2>
+
+        <p>
+            MC4JLauncher is one of the projects developed
+            under the Project MC4J ecosystem.
+
+            Together with tools like
+            <a href="../mc4jeditor/">MC4JEditor</a>,
+            it contributes to an independent environment
+            focused on Minecraft Legacy Console Edition.
+        </p>
+
+    </section>
+
+
+    <section class="github" id="github">
+
+        <h2 class="section-title">Explore the Project</h2>
+
+        <p>
+            Interested in MC4JLauncher?
+            Explore its source code, follow development
+            and contribute through GitHub.
+        </p>
+
+        <a class="button"
+           href="https://github.com/Project-MC4J/MC4JLauncher"
+           target="_blank"
+           rel="noopener noreferrer">
+            Visit GitHub Repository
+        </a>
+
+    </section>
+
+
+    <footer>
+
+        <p>MC4JLauncher © 2026</p>
+
+        <p>
+            Part of
+            <a href="../">Project MC4J</a>.
+        </p>
+
+        <p>Independent open-source community project.</p>
+
+    </footer>
+
+</body>
+</html>
+
