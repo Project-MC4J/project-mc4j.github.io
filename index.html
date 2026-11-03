@@ -8,6 +8,8 @@
 
     <title>Project MC4J</title>
 
+    <link rel="icon" type="image/png" href="logo.png">
+
     <style>
         * {
             margin: 0;
@@ -22,14 +24,26 @@
         }
 
         header {
-            padding: 25px 10%;
+            padding: 18px 10%;
             display: flex;
             justify-content: space-between;
             align-items: center;
             border-bottom: 1px solid #252b38;
         }
 
-        header h2 {
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .brand h2 {
             color: #55aaff;
         }
 
@@ -140,13 +154,28 @@
             text-align: center;
             color: #777;
         }
+
+        @media (max-width: 600px) {
+            header {
+                padding: 15px 5%;
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+
+            nav a {
+                margin-left: 10px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
     <header>
-        <h2>PROJECT MC4J</h2>
+        <div class="brand">
+            <img src="logo.png" alt="Project MC4J Logo">
+            <h2>PROJECT MC4J</h2>
+        </div>
 
         <nav>
             <a href="#projects">Projects</a>
