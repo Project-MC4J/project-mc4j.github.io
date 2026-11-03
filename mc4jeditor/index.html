@@ -1,1 +1,653 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="description" content="MC4JEditor - A packaging tool for Minecraft Legacy Console Edition projects. Your Project. Your Package.">
+
+    <title>MC4JEditor | Project MC4J</title>
+
+    <link rel="icon" type="image/png" href="../logo.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: #10131a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+        }
+
+        header {
+            padding: 18px 10%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid #252b38;
+            background: #10131a;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .brand img {
+            width: 48px;
+            height: 48px;
+            object-fit: contain;
+        }
+
+        .brand h2 {
+            color: #55aaff;
+            font-size: 21px;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        nav a:hover {
+            color: #55aaff;
+        }
+
+        .hero {
+            min-height: 78vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 60px 20px;
+            background:
+                radial-gradient(
+                    circle at center,
+                    rgba(37, 133, 223, 0.15),
+                    transparent 65%
+                );
+        }
+
+        .tag {
+            color: #55aaff;
+            border: 1px solid #2585df;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            letter-spacing: 1px;
+            margin-bottom: 25px;
+        }
+
+        .hero h1 {
+            font-size: clamp(45px, 8vw, 82px);
+            margin-bottom: 12px;
+        }
+
+        .hero h1 span {
+            color: #55aaff;
+        }
+
+        .slogan {
+            font-size: clamp(20px, 4vw, 27px);
+            color: #d0d0d0;
+            margin-bottom: 22px;
+            font-weight: bold;
+        }
+
+        .hero p {
+            color: #aaa;
+            font-size: 17px;
+            max-width: 680px;
+            line-height: 1.8;
+        }
+
+        .buttons {
+            margin-top: 35px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 15px 26px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: bold;
+            background: #2585df;
+            color: white;
+            transition: 0.2s;
+        }
+
+        .button.secondary {
+            background: #252b38;
+        }
+
+        .button:hover {
+            opacity: 0.85;
+            transform: translateY(-2px);
+        }
+
+        section {
+            padding: 75px 10%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 34px;
+            margin-bottom: 20px;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #aaa;
+            max-width: 750px;
+            margin: 0 auto 45px;
+            line-height: 1.8;
+        }
+
+        .about {
+            background: #151a23;
+        }
+
+        .about-content {
+            max-width: 850px;
+            margin: auto;
+            text-align: center;
+            color: #aaa;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        .features {
+            background: #10131a;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+            gap: 20px;
+        }
+
+        .feature {
+            background: #202735;
+            padding: 28px;
+            border-radius: 12px;
+            border: 1px solid #2b3547;
+            transition: transform 0.2s, border-color 0.2s;
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            border-color: #2585df;
+        }
+
+        .feature h3 {
+            color: #55aaff;
+            margin-bottom: 14px;
+            font-size: 19px;
+        }
+
+        .feature p {
+            color: #aaa;
+            line-height: 1.7;
+            font-size: 14px;
+        }
+
+        .workflow {
+            background: #151a23;
+        }
+
+        .workflow-content {
+            max-width: 850px;
+            margin: auto;
+            color: #aaa;
+            line-height: 1.9;
+            font-size: 16px;
+        }
+
+        .workflow-content h3 {
+            color: #55aaff;
+            margin: 25px 0 10px;
+        }
+
+        .workflow-content ul {
+            padding-left: 25px;
+        }
+
+        .package {
+            background: #10131a;
+        }
+
+        .package-content {
+            max-width: 850px;
+            margin: auto;
+            color: #aaa;
+            line-height: 1.8;
+            text-align: center;
+        }
+
+        .package-code {
+            background: #202735;
+            border: 1px solid #2b3547;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: left;
+            overflow-x: auto;
+        }
+
+        .package-code pre {
+            color: #d0d0d0;
+            font-family: Consolas, monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            white-space: pre;
+        }
+
+        .ecosystem {
+            background: #151a23;
+            text-align: center;
+        }
+
+        .ecosystem p {
+            color: #aaa;
+            line-height: 1.8;
+            max-width: 700px;
+            margin: auto;
+        }
+
+        .ecosystem a {
+            color: #55aaff;
+            text-decoration: none;
+        }
+
+        .github {
+            text-align: center;
+            background: #10131a;
+        }
+
+        .github p {
+            color: #aaa;
+            margin-bottom: 25px;
+            line-height: 1.7;
+        }
+
+        footer {
+            padding: 30px;
+            text-align: center;
+            color: #777;
+            line-height: 1.8;
+            border-top: 1px solid #252b38;
+        }
+
+        footer a {
+            color: #55aaff;
+            text-decoration: none;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                padding: 15px 5%;
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                justify-content: center;
+                gap: 14px;
+            }
+
+            section {
+                padding: 55px 6%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="brand">
+            <img src="../logo.png" alt="Project MC4J Logo">
+            <h2>MC4JEditor</h2>
+        </div>
+
+        <nav>
+            <a href="../">Home</a>
+            <a href="#about">About</a>
+            <a href="#features">Features</a>
+            <a href="#packaging">Packaging</a>
+            <a href="#github">GitHub</a>
+        </nav>
+    </header>
+
+
+    <section class="hero">
+
+        <div class="tag">PROJECT MC4J</div>
+
+        <h1>MC4J<span>Editor</span></h1>
+
+        <div class="slogan">
+            Your Project. Your Package.
+        </div>
+
+        <p>
+            A dedicated packaging tool designed for Minecraft
+            Legacy Console Edition projects.
+
+            Organize project files, configure package metadata
+            and create .mc4j archives for the MC4J ecosystem.
+        </p>
+
+        <div class="buttons">
+
+            <a class="button"
+               href="https://github.com/Project-MC4J/MC4JEditor"
+               target="_blank"
+               rel="noopener noreferrer">
+                View on GitHub
+            </a>
+
+            <a class="button secondary" href="#features">
+                Explore Features
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <section class="about" id="about">
+
+        <h2 class="section-title">What is MC4JEditor?</h2>
+
+        <p class="section-description">
+            A packaging environment for Minecraft Legacy projects.
+        </p>
+
+        <div class="about-content">
+
+            <p>
+                MC4JEditor is a packaging tool developed as part
+                of the Project MC4J ecosystem.
+
+                Its purpose is to simplify the process of preparing
+                Minecraft Legacy Console Edition projects for
+                distribution within the MC4J environment.
+            </p>
+
+            <br>
+
+            <p>
+                The editor collects project source files and
+                packages them into a compressed .mc4j archive,
+                while keeping launcher-related files and
+                compiled binaries separately accessible.
+            </p>
+
+            <br>
+
+            <p>
+                MC4JEditor is distributed as a standalone Windows
+                executable. No Python installation is required
+                to run it.
+            </p>
+
+            <br>
+
+            <p>
+                MC4JEditor does not provide Minecraft Legacy
+                source code or compiled game binaries.
+                Users must independently obtain the project
+                files they intend to package.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="features" id="features">
+
+        <h2 class="section-title">Features</h2>
+
+        <p class="section-description">
+            Tools designed to make preparing and packaging
+            Minecraft Legacy projects more convenient.
+        </p>
+
+        <div class="feature-grid">
+
+            <div class="feature">
+                <h3>.mc4j Packaging</h3>
+
+                <p>
+                    Collect project source files and bundle
+                    them into a compressed .mc4j archive.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Package Metadata</h3>
+
+                <p>
+                    Configure project names, descriptions
+                    and version information for each package.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Auxiliary Files</h3>
+
+                <p>
+                    Include optional icons, main scripts
+                    and other launcher-related resources.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Extension Integration</h3>
+
+                <p>
+                    Prepare MC4JLauncher extensions and
+                    preserve their directory structure.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Binary Organization</h3>
+
+                <p>
+                    Keep compiled x64 game binaries
+                    alongside the generated package.
+                </p>
+            </div>
+
+            <div class="feature">
+                <h3>Package Validation</h3>
+
+                <p>
+                    Validate required metadata and file
+                    paths before creating the final package.
+                </p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="workflow" id="packaging">
+
+        <h2 class="section-title">How Packaging Works</h2>
+
+        <p class="section-description">
+            Prepare your project and generate a structured
+            distribution package.
+        </p>
+
+        <div class="workflow-content">
+
+            <h3>01. Load Your Project</h3>
+
+            <p>
+                Open MC4JEditor and load your Minecraft Legacy
+                project from the Home page.
+            </p>
+
+            <h3>02. Configure Metadata</h3>
+
+            <p>
+                Set the package name, description and version
+                in the Packaging interface.
+            </p>
+
+            <h3>03. Select Auxiliary Files</h3>
+
+            <p>
+                Optionally configure your package icon,
+                main.py entry-point script and extensions folder.
+            </p>
+
+            <h3>04. Choose the Destination</h3>
+
+            <p>
+                Select where the final .mc4j archive
+                and accompanying files will be saved.
+            </p>
+
+            <h3>05. Create Your Package</h3>
+
+            <p>
+                Run the packaging process. MC4JEditor validates
+                the configuration and generates the final
+                distribution structure.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <section class="package">
+
+        <h2 class="section-title">Package Structure</h2>
+
+        <p class="section-description">
+            A generated MC4J distribution keeps source archives,
+            metadata, extensions and compiled binaries organized.
+        </p>
+
+        <div class="package-content">
+
+            <p>
+                The .mc4j archive contains the collected project
+                source files. Other resources remain alongside
+                the archive for MC4JLauncher to access.
+            </p>
+
+            <div class="package-code">
+<pre>
+Minecraft Legacy/
+│
+├── Minecraft.mc4j
+├── installation.txt
+├── icon.png
+├── main.py
+│
+├── x64/
+│   └── ...
+│
+└── extensions/
+    ├── ExtensionA/
+    │   ├── extension.json
+    │   └── main.py
+    │
+    └── ExtensionB/
+        ├── extension.json
+        └── main.py
+</pre>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <section class="ecosystem">
+
+        <h2 class="section-title">Part of Something Bigger</h2>
+
+        <p>
+            MC4JEditor is part of the Project MC4J ecosystem.
+
+            Together with tools like
+            <a href="../mc4jlauncher/">MC4JLauncher</a>,
+            it helps provide an organized environment
+            for Minecraft Legacy Console Edition projects.
+        </p>
+
+    </section>
+
+
+    <section class="github" id="github">
+
+        <h2 class="section-title">Explore the Project</h2>
+
+        <p>
+            Interested in MC4JEditor?
+
+            Visit the GitHub repository for project information
+            and official executable releases.
+            The source code is not publicly available.
+        </p>
+
+        <a class="button"
+           href="https://github.com/Project-MC4J/MC4JEditor"
+           target="_blank"
+           rel="noopener noreferrer">
+            Visit GitHub Repository
+        </a>
+
+    </section>
+
+
+    <footer>
+
+        <p>MC4JEditor © 2026</p>
+
+        <p>
+            Part of
+            <a href="../">Project MC4J</a>.
+        </p>
+
+        <p>
+            Proprietary software. Executable distributions only;
+            source code is not publicly available.
+        </p>
+
+    </footer>
+
+</body>
+</html>
